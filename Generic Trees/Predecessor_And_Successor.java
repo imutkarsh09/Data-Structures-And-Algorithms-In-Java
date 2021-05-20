@@ -1,4 +1,6 @@
 import java.util.*;
+
+import javax.lang.model.util.ElementScanner6;
 public class Predecessor_And_Successor
 {
     public static class Node
@@ -75,7 +77,20 @@ public class Predecessor_And_Successor
     successor = null;
     state=0;
     predecessorAndSuccessor(n1, data);
+    if(predecessor == null)
+    {
+        System.out.println("Predecessor : Null");
+        System.out.println("Successor : "+successor.data);
+    }
+    else if(successor== null)
+    {
+        System.out.println("Predecessor : "+predecessor.data);
+        System.out.println("Successor : Null");
+    }
+    else
+    {
     System.out.println("Predecessor : "+predecessor.data);
     System.out.println("Successor : "+ successor.data);
+    }
 }
 }

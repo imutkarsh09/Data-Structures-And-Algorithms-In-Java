@@ -1,33 +1,79 @@
-
-/**
- * Write a description of class Ceil_And_Floor here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
+// Ceil is smallest among largest
+// Floor is largest among smallest
+import java.util.*;
 public class Ceil_And_Floor
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Ceil_And_Floor
-     */
-    public Ceil_And_Floor()
+    public static class Node
     {
-        // initialise instance variables
-        x = 0;
+        int data;
+        ArrayList<Node> children = new ArrayList<>();
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    public static Node construct(int[] Ar)
     {
-        // put your code here
-        return x + y;
+        Stack<Node> st = new Stack<>();
+        Node root= null;
+        for(int i:Ar)
+        {
+            if(i==-1)
+            {
+                st.pop();
+            }
+            else
+            {
+                Node t = new Node();
+                t.data = i;
+                if(st.size()==0)
+                {
+                    root=t;
+                }
+                else
+                {
+                    st.peek().children.add(t);
+                }
+                st.push(t);
+            }
+        }
+        return root;
+    }
+    public static void caf(Node root, int data)
+    {
+        int no = root.data;
+        if(root.data>data)
+        {
+            if(root.data<ceil)
+            {
+                ceil=root.data;
+            }
+        }
+        else if(root.data<data)
+        {
+            if(root.data>floor)
+            {
+                floor = root.data;
+            }
+        }
+        for(Node child:root.children)
+        {
+            caf(child,data);
+        }
+    }
+    static int ceil;
+    static int floor;
+    public static void main(String Args[])
+    {
+        Scanner sc =  new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] Ar = new int[n];
+        for(int i=0;i<n;i++)
+        {
+            Ar[i]=sc.nextInt();
+        }
+        Node n1 = construct(Ar);
+        System.out.println("Enter the Node to be searched : ");
+        int ser = sc.nextInt();
+        ceil = Integer.MAX_VALUE;
+        floor = Integer.MIN_VALUE;
+        caf(n1,ser);
+        System.out.println("Ceil : "+ceil+"\n"+"Floor : "+floor);
     }
 }

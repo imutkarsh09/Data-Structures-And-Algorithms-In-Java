@@ -21,6 +21,8 @@ public class Knights_Tour
         {
             chess[r][c] = move;
             displayBoard(chess);
+            chess[r][c] = 0;
+            return;
         }
         chess[r][c] = move;
         printKnightsTour(chess, r-2, c+1, move+1);
